@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Oatmeal Pro";
-    src: url("/Edges/assets/fonts/OatmealProTRIAL-Regular.otf") format("opentype");
+    src: url("assets/fonts/OatmealProTRIAL-Regular.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -31,7 +31,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    cursor: url("/Edges/assets/Pizza\ Slice\ Right\ 2.cur") 16 16, default !important;
+    cursor: url("assets/Pizza\ Slice\ Right\ 2.cur") 16 16, default !important;
 }
 
 html {
