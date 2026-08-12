@@ -1,0 +1,414 @@
+@font-face {
+    font-family: "Oatmeal Pro";
+    src: url("/Edges/assets/fonts/OatmealProTRIAL-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* ── Tokens ── */
+:root {
+    --cream:     #faf0e1;
+    --ink:       #333543;
+    --sage:      #4a5c4e;
+    --gold:      #c9a84c;
+    --warm-grey: #e8e4d8;
+    --tib-teal:  #3d5a52;
+    --bake-dark: #2e3830;
+    --background: #2d3748;
+
+    --font-display: 'Oatmeal Pro', sans-serif;
+    --font-body:    'Oatmeal Pro', sans-serif;
+
+    --max-w: 1400px;
+    --section-pad: clamp(3rem, 6vw, 6rem);
+    --nav-icon-h: 220px;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    cursor: url("/Edges/assets/Pizza\ Slice\ Right\ 2.cur") 16 16, default !important;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+
+/* -- KeyFrames -- */
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fanOutLeft {
+    from { transform: translateX(0px) translateY(0px) rotate(0deg); }
+    to { transform: translateX(-300px) translateY(100px) rotate(-45deg); }
+}
+
+@keyframes fanOutRight {
+    from { transform: translateX(0px) translateY(0px) rotate(0deg); }
+    to { transform: translateX(300px) translateY(100px) rotate(45deg); }
+}
+
+@keyframes move {
+    from { offset-distance: -20%; }
+    to { offset-distance: 60%; }
+}
+
+@keyframes swoopRight {
+    0%{transform: translateX(100vh) ;}
+    40%{transform: translateX(-0vh) ;}
+}
+@keyframes swoopLeft {
+    0%{transform: translateX(-100vh) ;}
+    40%{transform: translateX(0vh) ;}
+}
+
+body {
+    background-color: var(--cream);
+    font-family: var(--font-body);
+    color: var(--ink);
+}
+
+/* ════════════════════════════════════════
+   HEADER
+   ════════════════════════════════════════ */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 0;
+}
+
+/* Hamburger */
+.linecontainer{
+    height: var(--nav-icon-h);
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    margin-top: 20px;
+    transition: 1s;
+}
+.line1{
+    width: 60px;
+    height: 5px;
+    border-radius: 10px;
+    background-color: var(--ink);
+    transform-origin: left;
+    transition: 1s;
+}
+.line2{
+    margin-top: 20px;
+    width: 60px;
+    height: 5px;
+    border-radius: 10px;
+    background-color: var(--ink);
+    transform-origin: left;
+    transition: 1s;
+}
+.linecontainer.clicked{
+    .line1 {transform: rotate(45deg);}
+    .line2 {transform: translateY(17px) rotate(-45deg);}
+}
+/* Title */
+.title-wrap {
+    text-align: center;
+}
+
+.title-img {
+    position: relative;
+    top: 80px;
+    display: block;
+    margin: 0 auto;
+    height: var(--nav-icon-h);
+    width: auto;
+}
+
+.title-sub {
+    position: relative;
+    /* top: -130px; */
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-top: 3px;
+    font-weight: 600;
+}
+
+/* Nav dropdown */
+.optionscontainer {
+    position: absolute;
+    left: 1%;
+    top: 12%;
+    width: 1000px;
+    display: none;
+    margin-top: 80px;
+    margin-left: 20px;
+    gap: 20px;
+    flex-direction: column;
+    color: var(--cream);
+    font-size: 30px;
+    transition: ease-in;
+    animation: fadeIn 2s;
+}
+
+.nav-link {
+    display: block;
+    padding: 2px 4px;
+    border-radius: 5px;
+    width: fit-content;
+    font-family: var(--font-display);
+    font-size: 30px;
+    color: var(--cream);
+    background-color: var(--ink);
+    cursor: pointer;
+    text-decoration: none;
+}
+.background-image {
+    position: relative;
+    width: 100%;
+    height: 140vh;
+    z-index: -50;
+    overflow: hidden;
+}
+.background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.background-container {
+    height: 90vh;
+}
+
+.TripplePhoto{
+    padding-bottom: 100px;
+}
+.TripplePhotoContainer {
+    padding-top: 100px;
+    position: relative;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--cream);
+}
+.TripplePhotoContainer img{
+    position: absolute;
+    height: 500px;
+    border-radius: 10px;
+    transition: scale 0.2s ease-in-out;
+}
+
+.TripplePhotoContainer img:hover{
+    scale: 1.1;
+}
+
+.TripplePhoto1{
+    animation: fanOutLeft 1s ease-out forwards paused;
+}
+.TripplePhoto3{
+    animation: fanOutRight 1s ease-out forwards paused;
+}
+.TripplePhotoContainer.in-view .TripplePhoto1,
+.TripplePhotoContainer.in-view .TripplePhoto3{
+    animation-play-state: running;
+}
+.SplitContainer{
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    /* margin-bottom: 100px; */
+    border-color: var(--ink);
+}
+.SplitContainerLeft{
+    position: relative;
+    z-index: 1;
+    color: var(--cream);
+    width: 100%;
+    height: 650px;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.SplitContainerLeft h1{
+    font-size: 3rem;
+    padding-bottom: 20px;
+}
+
+.SplitContainerRight{
+    width: 100%;
+    height: 650px;
+    background-color: var(--cream);
+    border: 1px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: -2;
+}
+.SplitContainerRight h1{
+    padding-top: 20px;
+    font-size: 3rem;
+}
+.circlePath{
+    width: 130%;
+    height: 100%;
+    border-radius: 45%;
+    /* border: 1px solid var(--ink); */
+    position: relative;
+    bottom: -50%;
+    left: -50%;
+    z-index: -1;
+    animation: move 2s ease-out paused;
+}
+.photoContainer .photo{
+    position: absolute;
+    height: 500px;
+    border-radius: 10px;
+    left: -50%;
+    offset-path: border-box;
+    offset-distance: -20%;
+}
+.menuCta{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    padding: 20px 40px;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--cream);
+    background-color: var(--gold);
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    transition: left 0.2s ease-out;
+}
+.menuCta.revealed{
+    left: 75%;
+}
+
+
+.aboutSection{
+    padding-top: 10px;
+    background-color: var(--cream);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 350vh;
+}
+
+.aboutSectionTop{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 200vh;
+}
+.aboutSectionTop .aboutSectionLeft{
+    width: 50%;
+    height: 80vh;
+    overflow: hidden;
+    
+}
+.aboutSectionTop .aboutSectionRight{
+    position: relative;
+    bottom: 0;
+    width: 50%;
+    height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    animation: swoopRight ease-out forwards paused;
+    animation-timeline: view();
+}
+.aboutSection h2{
+
+    font-size: 3rem;
+}
+.aboutSection p{
+    width: 80%;
+    font-size: 2rem;
+}
+.aboutSectionTop img{
+    margin-top: -200px;
+    height: 100vh;
+    overflow: hidden;
+    padding-left: 20%;
+}
+
+.aboutSectionTop.in-view  .aboutSectionLeft{
+    position: sticky;
+    top: 15vh;
+}
+.aboutSectionTop.in-view .aboutSectionRight{
+    animation-play-state: running;
+    position: sticky;
+    top: 15vh;
+}
+
+.aboutSectionBottom{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 150vh;
+}
+.aboutSectionBottom .aboutSectionRight{
+    width: 50%;
+    height: 80vh;
+    overflow: hidden;
+    
+}
+.aboutSectionBottom .aboutSectionLeft{
+    position: relative;
+    bottom: 0;
+    width: 50%;
+    height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    animation: swoopLeft ease-out forwards paused;
+    animation-timeline: view();
+}
+.aboutSectionBottom img{
+    height: 60vh;
+    overflow: hidden;
+}
+
+.aboutSectionBottom.in-view  .aboutSectionRight{
+    position: sticky;
+    top: 15vh;
+}
+.aboutSectionBottom.in-view .aboutSectionLeft{
+    animation-play-state: running;
+    position: sticky;
+    top: 15vh;
+}

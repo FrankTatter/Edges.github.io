@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Edges/index.css">
+    
+    <link id="favicon" rel="icon" href="https://ucarecdn.com/c79a1c02-bc90-4911-bb84-7e069266ec27/-/resize/32x32/">
+    <title>EDGES PIZZA</title>
+</head>
+<body>
+    <!-- ── HEADER ── -->
+        <header id="header" class="header">
+            <div class="linecontainer" onclick="toggleTransform(this)" aria-label="Open menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
+
+            <nav class="optionscontainer" id="optionscontainer">
+                <a class="nav-link" onclick="window.location.href='https://order.storekit.com/edgespizza/menu'">Preorder</a>
+                <!-- <a class="nav-link" onclick="window.location.href=''">Menu</a>
+                <a class="nav-link" onclick="window.location.href=''">Our Story</a> -->
+                <a class="nav-link" onclick="window.location.href=''">hello@edgespizza.co.uk</a>
+            </nav>
+
+            <div class="title-wrap">
+                <img class="title-img" src="/Edges/assets/EdgesLogo_transparent.png" alt="Edges Pizza Logo">
+                <p class="title-sub">A slice of New York City</p
+            </div>
+
+            <script>
+            function toggleTransform(element) {
+                element.classList.toggle('clicked');
+                const nav = document.getElementById("optionscontainer");
+                nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+            }
+            </script>
+        </header>
+    <div class="background-container">
+        <div class="background-image">
+            <img src="/Edges/assets/WorkingAtEdges.jpg" alt="Edges Pizza Background">
+        </div>
+    </div>
+    <div class="SplitContainer">
+        <div class="SplitContainerLeft">
+            <h1>Location</h1>
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2357.0406751228684!2d-1.5591644!3d53.788763599999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48795f14ab62901b%3A0x23e0e194b0085493!2sEdges%20Pizza!5e0!3m2!1sen!2suk!4v1786465414978!5m2!1sen!2suk" width="70%" height="80%" style="border:0;" allowfullscreen="0" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <div class="SplitContainerRight">
+            <h1>Menu</h1>
+            <div class="circlePath">
+                <div class="photoContainer">
+                    <img class="photo" src="/Edges/assets/Pizza1.jpg" alt="Edges Pizza ">
+                    <img class="photo" src="/Edges/assets/Pizza2.jpg" alt="Edges Pizza ">
+                    <img class="photo" src="/Edges/assets/Pizza3.jpg" alt="Edges Pizza ">
+                    <img class="photo" src="/Edges/assets/Pizza4.jpg" alt="Edges Pizza ">
+                    <img class="photo" src="/Edges/assets/Pizza5.jpg" alt="Edges Pizza ">
+                    <img class="photo" src="/Edges/assets/Pizza6.jpg" alt="Edges Pizza ">
+                </div>
+            </div>
+        </div>
+        <div class="menuCta" onclick="window.location.href='https://order.storekit.com/edgespizza/menu'">Order Now</div>
+    </div>
+
+
+    <div class="aboutSection">
+
+
+        <div class="aboutSectionTop">
+            <div class="aboutSectionLeft">
+                <img src="assets/OutSideEdges.jpg" alt="photo outside edges pizza">
+            </div>
+            <div class="aboutSectionRight">
+                <h2 class="aboutHeading">Now Under the Arches</h2>
+                <p class="aboutText">Seven months, a few false starts, and one very stubborn search for the right building later, Edges found its permanent home in a railway arch on Bridge Road, Holbeck. Every pie we make is no less than 18 inches, by the slice or whole, pre-ordered online and ready for collection. We pride ourselves on perfection &mdash; and we're not settling for anything less.</p>
+            
+            </div>
+        </div>
+
+
+        <div class="aboutSectionBottom">
+            <div class="aboutSectionLeft">
+                <h2 class="aboutHeading">Three Trips to New York</h2>
+                <p class="aboutText">Edges Pizza started with Grace Ward and her partner Edge, two Harrogate locals who kept coming home from New York City craving one thing: a proper slice. Thin, crispy, and folded in half &mdash; the kind of pizza Leeds didn't have. So they built it themselves, running pop-ups across the north and finding a home for a summer on the rooftop terrace at Green Room.</p>
+            </div>
+            <div class="aboutSectionRight">
+                <img src="assets/PizzaOven.jpg" alt="photo working at edges pizza">
+            </div>
+        </div>
+
+
+    </div>
+
+
+    
+    <div class="TripplePhoto">
+        <div class="TripplePhotoContainer">
+            <img class="TripplePhoto1" src="/Edges/assets/Pizza1.jpg" alt="Edges Pizza ">
+            <img class="TripplePhoto2" src="/Edges/assets/Pizza2.jpg" alt="Edges Pizza ">
+            <img class="TripplePhoto3" src="/Edges/assets/Pizza3.jpg" alt="Edges Pizza ">
+        </div>
+
+    </div>
+
+    <script>
+
+//   Intersection Observer for TripplePhotoContainer
+    
+    const tripplePhotoContainer = document.querySelector(".TripplePhotoContainer");
+    const tripplePhotoObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    tripplePhotoObserver.observe(tripplePhotoContainer);
+
+    // Intersection Observer for SplitContainer
+
+    (function () {
+        const splitContainer = document.querySelector(".SplitContainer");
+        const menuCta = document.querySelector(".menuCta");
+        const photos = document.querySelectorAll(".photoContainer .photo");
+        const CARD_COUNT = photos.length;
+        const CARD_DURATION = 200;        // how long each card's own move takes
+        const CARD_STAGGER = 80;          // how far apart consecutive cards start — smaller = closer together
+        const MAX_PROGRESS = (CARD_COUNT - 1) * CARD_STAGGER + CARD_DURATION;
+        const SCROLL_SENSITIVITY = 0.5;   // lower = more scrolling needed = slower
+        const PATH_START = -15;            // offset-distance % where the first photo starts
+        const PATH_END = 45;              // offset-distance % where the last photo ends up
+
+        let frozen = false;
+        let finished = false;
+        let progress = 0;
+        let touchStartY = 0;
+        let prevRect = splitContainer.getBoundingClientRect();
+
+        function applyProgress() {
+            photos.forEach((photo, i) => {
+                const start = i * CARD_STAGGER;
+                const local = Math.min(Math.max(progress - start, 0), CARD_DURATION) / CARD_DURATION;
+                photo.style.offsetDistance = `${PATH_START + local * (PATH_END - PATH_START)}%`;
+            });
+        }
+
+        function lockScroll() {
+            const scrollY = window.scrollY;
+            document.body.dataset.frozenScrollY = String(scrollY);
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.left = "0";
+            document.body.style.right = "0";
+            document.body.style.width = "100%";
+        }
+
+        function unlockScroll() {
+            const scrollY = parseFloat(document.body.dataset.frozenScrollY || "0");
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.left = "";
+            document.body.style.right = "";
+            document.body.style.width = "";
+            window.scrollTo({ top: scrollY, left: 0, behavior: "instant" });
+        }
+
+        function freeze(initialProgress) {
+            if (finished) return;
+            frozen = true;
+            progress = initialProgress;
+            applyProgress();
+            lockScroll();
+            window.addEventListener("wheel", onWheel, { passive: false });
+            window.addEventListener("touchstart", onTouchStart, { passive: true });
+            window.addEventListener("touchmove", onTouchMove, { passive: false });
+        }
+
+        function unfreeze() {
+            frozen = false;
+            window.removeEventListener("wheel", onWheel);
+            window.removeEventListener("touchstart", onTouchStart);
+            window.removeEventListener("touchmove", onTouchMove);
+            unlockScroll();
+            prevRect = splitContainer.getBoundingClientRect();
+        }
+
+        function advanceProgress(delta) {
+            progress += delta;
+            if (progress >= MAX_PROGRESS) {
+                progress = MAX_PROGRESS;
+                applyProgress();
+                finished = true;
+                menuCta.classList.add("revealed");
+                unfreeze();
+                return;
+            }
+            if (progress <= 0) {
+                progress = 0;
+                applyProgress();
+                unfreeze();
+                return;
+            }
+            applyProgress();
+        }
+
+        function onWheel(e) {
+            e.preventDefault();
+            advanceProgress(e.deltaY * SCROLL_SENSITIVITY);
+        }
+
+        function onTouchStart(e) {
+            touchStartY = e.touches[0].clientY;
+        }
+
+        function onTouchMove(e) {
+            e.preventDefault();
+            const currentY = e.touches[0].clientY;
+            advanceProgress((touchStartY - currentY) * SCROLL_SENSITIVITY);
+            touchStartY = currentY;
+        }
+
+        window.addEventListener("scroll", () => {
+            if (frozen) return;
+            const rect = splitContainer.getBoundingClientRect();
+            if (prevRect.bottom > window.innerHeight && rect.bottom <= window.innerHeight) {
+                freeze(0);
+            } else if (prevRect.top < 0 && rect.top >= 0) {
+                freeze(MAX_PROGRESS);
+            }
+            prevRect = rect;
+        }, { passive: true });
+
+        applyProgress();
+    })();
+
+
+    //   Intersection Observer for top about section
+    
+    const Top = document.querySelector(".aboutSectionTop");
+    const TopObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    TopObserver.observe(Top);
+
+    //   Intersection Observer for bottom about section
+    
+    const Bottom = document.querySelector(".aboutSectionBottom");
+    const BottomObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    BottomObserver.observe(Bottom);
+    </script>
+</body>
+</html>
+ 
